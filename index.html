@@ -11,6 +11,7 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+            transition: background-color 0.3s ease;
         }
         .container {
             width: 80%;
@@ -18,35 +19,94 @@
             overflow: hidden;
             padding: 20px;
             background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-left: 5px solid #333;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .container:hover {
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+            transform: scale(1.02);
         }
         header {
             text-align: center;
             padding: 20px 0;
-            border-bottom: 2px solid #333;
+            border-bottom: 2px solid #007BFF;
         }
         header h1 {
             margin: 0;
             color: #333;
+            font-size: 2.5em;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
-        .contact-info, .summary, .education, .experience, .skills, .tools, .languages, .interests {
+        header h1:hover {
+            color: #FF0000;
+            transform: scale(1.1);
+        }
+        header p {
+            margin: 5px 0;
+            color: #007BFF;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+        header p:hover {
+            color: #FF0000;
+        }
+        .contact-info, .summary, .education, .experience, .skills, .tools, .certifications, .languages, .interests {
             margin-bottom: 20px;
         }
         .section-title {
-            background: #333;
+            background: #007BFF;
             color: #fff;
             padding: 10px;
             margin-bottom: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
         }
-        .contact-info p, .summary p, .education p, .experience p, .skills p, .tools p, .languages p, .interests p {
+        .section-title:hover {
+            background: #FF0000;
+            transform: translateX(10px);
+        }
+        .section-content {
+            display: none;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+        }
+        .section-content.show {
+            display: block;
+            max-height: 1000px;
+            padding: 10px;
+        }
+        .contact-info p, .summary p, .education p, .experience p, .skills p, .tools p, .certifications p, .languages p, .interests p {
             margin: 5px 0;
+            transition: transform 0.3s ease;
+        }
+        .contact-info p:hover, .summary p:hover, .education p:hover, .experience p:hover, .skills p:hover, .tools p:hover, .certifications p:hover, .languages p:hover, .interests p:hover {
+            transform: translateX(10px);
         }
         .contact-info p a {
-            color: #333;
+            color: #007BFF;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         .contact-info p a:hover {
+            color: #FF0000;
             text-decoration: underline;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #FF0000;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        button:hover {
+            background-color: #333;
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -58,74 +118,104 @@
         </header>
 
         <div class="contact-info">
-            <div class="section-title">Contact Info</div>
-            <p>Email: <a href="mailto:inzamulsepoy@gmail.com">inzamulsepoy@gmail.com</a></p>
-            <p>Phone: +91 79 8252 3966</p>
-            <p>Address: Rashid Market, Krishna Nagar, Delhi 110051</p>
-            <p>Date of Birth: 10/10/1994</p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/inzamulsepoy/" target="_blank">linkedin.com/in/inzamulsepoy</a></p>
+            <div class="section-title" onclick="toggleSection('contact-info-content')">Contact Info</div>
+            <div id="contact-info-content" class="section-content">
+                <p>Email: <a href="mailto:inzamulsepoy@gmail.com">inzamulsepoy@gmail.com</a></p>
+                <p>Phone: +91 79 8252 3966</p>
+                <p>Address: Rashid Market, Krishna Nagar, Delhi 110051</p>
+                <p>Date of Birth: 10/10/1994</p>
+                <p>LinkedIn: <a href="https://www.linkedin.com/in/inzamulsepoy/" target="_blank">linkedin.com/in/inzamulsepoy</a></p>
+            </div>
         </div>
 
         <div class="summary">
-            <div class="section-title">Summary</div>
-            <p>As a Cybersecurity Analyst, I am responsible for protecting an organization's computer systems, networks, and data from unauthorized access, theft, and damage. Using various techniques such as penetration testing, vulnerability assessments (VAPT), and risk analysis to identify potential threats and develop strategies to mitigate them.</p>
+            <div class="section-title" onclick="toggleSection('summary-content')">Summary</div>
+            <div id="summary-content" class="section-content">
+                <p>As a Cybersecurity Analyst, I am responsible for protecting an organization's computer systems, networks, and data from unauthorized access, theft, and damage. Using various techniques such as penetration testing, vulnerability assessments (VAPT), and risk analysis to identify potential threats and develop strategies to mitigate them.</p>
+            </div>
         </div>
 
         <div class="education">
-            <div class="section-title">Educational Background</div>
-            <p><strong>Masters in Economics</strong><br>Institution: University of Indira Gandhi, Delhi<br>
-                </p>
-            
-            <p><strong>Bachelor of Computer Applications</strong><br>Institution: Himalayan University</p>
+            <div class="section-title" onclick="toggleSection('education-content')">Educational Background</div>
+            <div id="education-content" class="section-content">
+                <p><strong>Masters in Economics</strong><br>Institution: University of Indira Gandhi, Delhi</p>
+                <p><strong>Bachelor of Computer Applications</strong><br>Institution: Himalayan University</p>
+            </div>
         </div>
 
         <div class="experience">
-            <div class="section-title">Work Experience</div>
-            <p><strong>Intern as a Penetration Tester</strong><br>Hacktify (Feb 2024 - Present)</p>
-            <p><strong>Subject Matter Expert</strong><br>Geeta Publishing House (Apr 2022 - June 2022)</p>
-            <p><strong>Pentesting Trainer</strong><br>Coding Bolt Academy (Nov 2023 - Present)</p>
-            <p><strong>Computer Science Faculty and Robotics Trainer</strong><br>Bengali Sr. Sec. School (July 2023 - Sep 2023)</p>
+            <div class="section-title" onclick="toggleSection('experience-content')">Work Experience</div>
+            <div id="experience-content" class="section-content">
+                <p><strong>Intern as a Penetration Tester</strong><br>Hacktify (Feb 2024 - Present)</p>
+                <p><strong>Subject Matter Expert</strong><br>Geeta Publishing House (Apr 2022 - June 2022)</p>
+                <p><strong>Pentesting Trainer</strong><br>Coding Bolt Academy (Nov 2023 - Present)</p>
+                <p><strong>Computer Science Faculty and Robotics Trainer</strong><br>Bengali Sr. Sec. School (July 2023 - Sep 2023)</p>
+            </div>
         </div>
 
         <div class="skills">
-            <div class="section-title">Skills & Proficiencies</div>
-            <p>Python, C/C++, Java, JavaScript, Bash, SQL, Linux</p>
-            <p>Full Stack Developer</p>
-            <p>Computer Networking</p>
-            <p>Hardware and PCB Troubleshooting</p>
-            <p>Penetration Testing (VAPT)</p>
-            <p>Graphic Designing</p>
-            <p>Editorial works in Publications</p>
+            <div class="section-title" onclick="toggleSection('skills-content')">Skills & Proficiencies</div>
+            <div id="skills-content" class="section-content">
+                <p>Python, C/C++, Java, JavaScript, Bash, SQL, Linux</p>
+                <p>Full Stack Developer</p>
+                <p>Computer Networking</p>
+                <p>Hardware and PCB Troubleshooting</p>
+                <p>Penetration Testing (VAPT)</p>
+                <p>Graphic Designing</p>
+                <p>Editorial works in Publications</p>
+            </div>
         </div>
 
         <div class="tools">
-            <div class="section-title">Expertise in Tools</div>
-            <p>BurpSuite, Metasploit, Maltego</p>
-            <p>Wireshark/TCPdump, Hydra, NMAP</p>
-            <p>SQLMap, Autopsy, Johntheripper</p>
+            <div class="section-title" onclick="toggleSection('tools-content')">Expertise in Tools</div>
+            <div id="tools-content" class="section-content">
+                <p>BurpSuite, Metasploit, Maltego</p>
+                <p>Wireshark/TCPdump, Hydra, NMAP</p>
+                <p>SQLMap, Autopsy, Johntheripper</p>
+            </div>
         </div>
 
         <div class="certifications">
-            <div class="section-title">Certifications</div>
-            <p>Certified AppSec Practitioner (CAP) - The SecOps Group</p>
-            <p>Penetration Testing & Ethical Hacking - Cybrary</p>
-            <p>Network Defense Essentials - EC Council</p>
-            <p>Networking - CISCO</p>
+            <div class="section-title" onclick="toggleSection('certifications-content')">Certifications</div>
+            <div id="certifications-content" class="section-content">
+                <p>Certified AppSec Practitioner (CAP) - The SecOps Group</p>
+                <p>Penetration Testing & Ethical Hacking - Cybrary</p>
+                <p>Network Defense Essentials - EC Council</p>
+                <p>Networking - CISCO</p>
+            </div>
         </div>
 
         <div class="languages">
-            <div class="section-title">Languages Known</div>
-            <p>Bengali</p>
-            <p>Hindi</p>
-            <p>English</p>
+            <div class="section-title" onclick="toggleSection('languages-content')">Languages Known</div>
+            <div id="languages-content" class="section-content">
+                <p>Bengali</p>
+                <p>Hindi</p>
+                <p>English</p>
+            </div>
         </div>
 
         <div class="interests">
-            <div class="section-title">Interests</div>
-            <p>Book Reading</p>
-            <p>Tech Gadgets</p>
-            <p>Writing Books & Articles</p>
+            <div class="section-title" onclick="toggleSection('interests-content')">Interests</div>
+            <div id="interests-content" class="section-content">
+                <p>Book Reading</p>
+                <p>Tech Gadgets</p>
+                <p>Writing Books & Articles</p>
+            </div>
         </div>
+
+        <button onclick="toggleAllSections()">Toggle All Sections</button>
     </div>
+
+    <script>
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.classList.toggle('show');
+        }
+
+        function toggleAllSections() {
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => section.classList.toggle('show'));
+        }
+    </script>
 </body>
 </html>
